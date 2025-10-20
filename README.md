@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
+# Color My Feeling Sheet
 
-## Project info
+감정을 색상으로 표현하고 기록하는 인터랙티브 웹 애플리케이션입니다.
 
-**URL**: https://lovable.dev/projects/890964fa-5266-489b-a48e-f08f97f634c6
+## 기술 스택
 
-## How can I edit this code?
+- **Vite** - 빌드 도구
+- **React** - UI 라이브러리
+- **TypeScript** - 타입 안정성
+- **shadcn/ui** - UI 컴포넌트
+- **Tailwind CSS** - 스타일링
 
-There are several ways of editing your application.
+## 시작하기
 
-**Use Lovable**
+### 설치
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/890964fa-5266-489b-a48e-f08f97f634c6) and start prompting.
+```bash
+# 의존성 설치
+npm install
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+### 개발 서버 실행
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+브라우저에서 http://localhost:8080 으로 접속하세요.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 프로덕션 빌드
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+빌드된 파일은 `dist` 폴더에 생성됩니다.
 
-## What technologies are used for this project?
+## GitHub Pages 배포
 
-This project is built with:
+이 프로젝트는 GitHub Pages에 자동으로 배포될 수 있습니다.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 수동 배포
 
-## How can I deploy this project?
+```bash
+# 빌드
+npm run build
 
-Simply open [Lovable](https://lovable.dev/projects/890964fa-5266-489b-a48e-f08f97f634c6) and click on Share -> Publish.
+# dist 폴더를 gh-pages 브랜치에 배포
+npm install -g gh-pages
+gh-pages -d dist
+```
 
-## Can I connect a custom domain to my Lovable project?
+### GitHub Actions를 통한 자동 배포
 
-Yes, you can!
+`.github/workflows/deploy.yml` 파일이 포함되어 있어 main 브랜치에 푸시할 때마다 자동으로 배포됩니다.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+배포 후 `https://[username].github.io/color-my-feeling-sheet/` 에서 확인할 수 있습니다.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 프로젝트 구조
+
+```
+color-my-feeling-sheet/
+├── src/
+│   ├── components/    # React 컴포넌트
+│   ├── hooks/         # 커스텀 훅
+│   ├── lib/           # 유틸리티 함수
+│   ├── pages/         # 페이지 컴포넌트
+│   └── App.tsx        # 메인 앱 컴포넌트
+├── public/            # 정적 파일
+└── ...
+```
+
+## 라이선스
+
+MIT License

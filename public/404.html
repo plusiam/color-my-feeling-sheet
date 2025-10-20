@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA 리다이렉트 핸들러
+      // 404 페이지에서 실제 앱으로 리다이렉트
+      const path = window.location.pathname.split('/').slice(2).join('/');
+      const query = window.location.search;
+      const hash = window.location.hash;
+      
+      window.location.replace(
+        window.location.origin + '/color-my-feeling-sheet/' + 
+        (path ? '?p=/' + path : '') + 
+        query.replace(/^\?/, '&') + 
+        hash
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
