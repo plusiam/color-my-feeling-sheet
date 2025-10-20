@@ -2,6 +2,9 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 interface ResultCardProps {
+  grade: string;
+  className: string;
+  name: string;
   storyCard: string;
   selectedColor: { name: string; color: string; value: string } | null;
   emotionWords: string[];
@@ -10,6 +13,9 @@ interface ResultCardProps {
 }
 
 export const ResultCard = ({
+  grade,
+  className,
+  name,
   storyCard,
   selectedColor,
   emotionWords,
@@ -33,6 +39,15 @@ export const ResultCard = ({
           </h1>
           <p className="text-muted-foreground">색으로 감정을 이야기하는 놀이</p>
         </div>
+
+        {/* Student Info */}
+        {(grade || className || name) && (
+          <div className="flex justify-end gap-2 text-sm text-muted-foreground">
+            {grade && <span>{grade}학년</span>}
+            {className && <span>{className}반</span>}
+            {name && <span className="font-medium text-foreground">{name}</span>}
+          </div>
+        )}
 
         <Separator />
 

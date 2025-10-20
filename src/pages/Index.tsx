@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { StudentInfo } from "@/components/StudentInfo";
 import { StoryCardSelector } from "@/components/StoryCardSelector";
 import { ColorPalette } from "@/components/ColorPalette";
 import { EmotionWordSelector } from "@/components/EmotionWordSelector";
@@ -10,6 +11,9 @@ import { Download, RotateCcw, Heart } from "lucide-react";
 import { toast } from "sonner";
 
 const Index = () => {
+  const [grade, setGrade] = useState("");
+  const [className, setClassName] = useState("");
+  const [name, setName] = useState("");
   const [selectedStory, setSelectedStory] = useState("");
   const [selectedColor, setSelectedColor] = useState<{
     name: string;
@@ -50,6 +54,9 @@ const Index = () => {
   };
 
   const handleReset = () => {
+    setGrade("");
+    setClassName("");
+    setName("");
     setSelectedStory("");
     setSelectedColor(null);
     setSelectedEmotions([]);
@@ -84,6 +91,15 @@ const Index = () => {
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
         {!showResult ? (
           <>
+            <StudentInfo
+              grade={grade}
+              className={className}
+              name={name}
+              onGradeChange={setGrade}
+              onClassChange={setClassName}
+              onNameChange={setName}
+            />
+
             <StoryCardSelector
               selectedCard={selectedStory}
               onSelect={setSelectedStory}
@@ -136,6 +152,9 @@ const Index = () => {
         ) : (
           <div className="space-y-6">
             <ResultCard
+              grade={grade}
+              className={className}
+              name={name}
               storyCard={selectedStory}
               selectedColor={selectedColor}
               emotionWords={selectedEmotions}
