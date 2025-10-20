@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { PlusCircle } from "lucide-react";
 
 const storyCards = [
   "나는 친구에게 상처를 준 적이 있어요",
@@ -15,9 +17,18 @@ const storyCards = [
 interface StoryCardSelectorProps {
   selectedCard: string;
   onSelect: (card: string) => void;
+  customCard: string;
+  onCustomCardChange: (card: string) => void;
 }
 
-export const StoryCardSelector = ({ selectedCard, onSelect }: StoryCardSelectorProps) => {
+export const StoryCardSelector = ({ 
+  selectedCard, 
+  onSelect, 
+  customCard, 
+  onCustomCardChange 
+}: StoryCardSelectorProps) => {
+  const isCustomSelected = selectedCard === "custom" || (customCard && selectedCard === customCard);
+  
   return (
     <div className="space-y-4">
       <div className="text-center">
@@ -48,6 +59,34 @@ export const StoryCardSelector = ({ selectedCard, onSelect }: StoryCardSelectorP
           </Card>
         ))}
       </div>
+
+      {/* Custom Card Input */}
+      <Card
+        className={cn(
+          "p-4 border-2 transition-all",
+          isCustomSelected
+            ? "border-primary bg-accent shadow-lg"
+            : "border-dashed border-border hover:border-primary/50"
+        )}
+      >
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-foreground">
+            <PlusCircle className="w-5 h-5 text-primary" />
+            <h3 className="font-semibold">직접 입력하기</h3>
+          </div>
+          <Textarea
+            value={customCard}
+            onChange={(e) => {
+              onCustomCardChange(e.target.value);
+              if (e.target.value.trim()) {
+                onSelect(e.target.value);
+              }
+            }}
+            placeholder="나만의 이야기를 자유롭게 써보세요..."
+            className="min-h-[80px] resize-none bg-background border-border"
+          />
+        </div>
+      </Card>
     </div>
   );
 };

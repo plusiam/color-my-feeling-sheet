@@ -14,13 +14,16 @@ const Index = () => {
   const [grade, setGrade] = useState("");
   const [className, setClassName] = useState("");
   const [name, setName] = useState("");
+  const [customStoryCard, setCustomStoryCard] = useState("");
   const [selectedStory, setSelectedStory] = useState("");
   const [selectedColor, setSelectedColor] = useState<{
     name: string;
     color: string;
     value: string;
   } | null>(null);
+  const [customColorName, setCustomColorName] = useState("");
   const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
+  const [customEmotionWords, setCustomEmotionWords] = useState<string[]>([]);
   const [colorReason, setColorReason] = useState("");
   const [expression, setExpression] = useState("");
   const [showResult, setShowResult] = useState(false);
@@ -29,6 +32,18 @@ const Index = () => {
     setSelectedEmotions((prev) =>
       prev.includes(word) ? prev.filter((w) => w !== word) : [...prev, word]
     );
+  };
+
+  const handleAddCustomEmotion = (word: string) => {
+    if (!customEmotionWords.includes(word)) {
+      setCustomEmotionWords((prev) => [...prev, word]);
+      setSelectedEmotions((prev) => [...prev, word]);
+    }
+  };
+
+  const handleRemoveCustomEmotion = (word: string) => {
+    setCustomEmotionWords((prev) => prev.filter((w) => w !== word));
+    setSelectedEmotions((prev) => prev.filter((w) => w !== word));
   };
 
   const handleShowResult = () => {
@@ -57,9 +72,12 @@ const Index = () => {
     setGrade("");
     setClassName("");
     setName("");
+    setCustomStoryCard("");
     setSelectedStory("");
     setSelectedColor(null);
+    setCustomColorName("");
     setSelectedEmotions([]);
+    setCustomEmotionWords([]);
     setColorReason("");
     setExpression("");
     setShowResult(false);
@@ -103,12 +121,16 @@ const Index = () => {
             <StoryCardSelector
               selectedCard={selectedStory}
               onSelect={setSelectedStory}
+              customCard={customStoryCard}
+              onCustomCardChange={setCustomStoryCard}
             />
 
             {selectedStory && (
               <ColorPalette
                 selectedColor={selectedColor}
                 onSelect={setSelectedColor}
+                customColorName={customColorName}
+                onCustomColorNameChange={setCustomColorName}
               />
             )}
 
@@ -116,6 +138,9 @@ const Index = () => {
               <EmotionWordSelector
                 selectedWords={selectedEmotions}
                 onToggle={handleEmotionToggle}
+                customWords={customEmotionWords}
+                onAddCustomWord={handleAddCustomEmotion}
+                onRemoveCustomWord={handleRemoveCustomEmotion}
               />
             )}
 
