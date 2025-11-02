@@ -31,23 +31,25 @@ export const ResultCard = ({
       id="result-card"
       className="p-8 bg-gradient-to-br from-card to-background border-2 border-border shadow-xl max-w-2xl mx-auto"
     >
-      <div className="space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">
-            마음빚 카드
-          </h1>
-          <p className="text-muted-foreground">색으로 감정을 이야기하는 놀이</p>
-        </div>
-
-        {/* Student Info */}
-        {(grade || className || name) && (
-          <div className="flex justify-end gap-2 text-sm text-muted-foreground">
-            {grade && <span>{grade}학년</span>}
-            {className && <span>{className}반</span>}
-            {name && <span className="font-medium text-foreground">{name}</span>}
+      <div className="space-y-4">
+        {/* Header with Student Info */}
+        <div className="space-y-3">
+          <div className="text-center space-y-1">
+            <h1 className="text-3xl font-bold text-foreground">
+              마음빛 카드
+            </h1>
+            <p className="text-sm text-muted-foreground">색으로 감정을 이야기하는 놀이</p>
           </div>
-        )}
+          
+          {/* Student Info - More Prominent */}
+          {(grade || className || name) && (
+            <div className="flex justify-center gap-4 text-sm font-medium bg-primary/5 py-2 px-4 rounded border border-primary/20">
+              {grade && <span className="text-foreground">{grade}학년</span>}
+              {className && <span className="text-foreground">{className}반</span>}
+              {name && <span className="text-primary">{name}</span>}
+            </div>
+          )}
+        </div>
 
         <Separator />
 
@@ -73,14 +75,14 @@ export const ResultCard = ({
           </div>
         </div>
 
-        {/* Emotion Words */}
+        {/* Emotion Words - Improved Grid Layout */}
         <div className="space-y-2">
           <h3 className="text-lg font-semibold text-foreground">나의 감정</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-3 gap-2">
             {emotionWords.map((word) => (
               <span
                 key={word}
-                className="px-3 py-1 bg-primary text-primary-foreground rounded-full text-sm font-medium"
+                className="px-3 py-2 bg-primary text-primary-foreground rounded text-center text-sm font-medium"
               >
                 {word}
               </span>
