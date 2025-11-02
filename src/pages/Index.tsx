@@ -60,11 +60,11 @@ const Index = () => {
       return;
     }
     setShowResult(true);
-    toast.success("마음빚 카드가 완성되었어요! 🎉");
+    toast.success("마음빛 카드가 완성되었어요! 🎉");
   };
 
   const handleDownload = async () => {
-    await downloadAsImage("result-card", `마음빚카드_${Date.now()}.png`);
+    await downloadAsImage("result-card", `마음빛카드_${Date.now()}.png`);
     toast.success("이미지가 다운로드되었어요!");
   };
 
@@ -92,7 +92,7 @@ const Index = () => {
           <div className="flex items-center justify-center gap-2">
             <Heart className="w-8 h-8 text-primary" />
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              마음빚 카드
+              마음빛 카드
             </h1>
             <Heart className="w-8 h-8 text-secondary" />
           </div>
